@@ -1,8 +1,7 @@
 <template>
-  <div class="container">
+  <div class="overall">
+    <Header />
     <div class="todo-box">
-      <h1>My Todo-s</h1>
-
       <form>
         <input type="text" placeholder="Add new..." />
         <button>Add</button>
@@ -35,19 +34,12 @@
 </template>
 
 <script setup>
-import { reactive, ref } from "vue";
+import Header from "./components/Header.vue";
 </script>
 
 <style scoped>
-.container {
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  background-color: white;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 8px;
+.overall {
+  @apply flex w-screen h-screen bg-white justify-center items-center flex-col;
 }
 
 h1 {
@@ -58,27 +50,19 @@ h1 {
 }
 
 form {
-  margin-bottom: 24px;
+  @apply w-[595px] justify-evenly flex mb-6 mx-4;
 }
 
 form input {
-  width: 500px;
-  font-size: 24px;
-  padding: 8px;
-  color: rgb(75, 75, 75);
-  outline: none;
-  border: solid 2px rgb(162, 162, 162);
-  border-radius: 8px;
+  @apply w-[400px] text-2xl px-3 py-4 bg-[#ccceff] border-solid border-2 border-[#bbbdf6] rounded-lg;
 }
 
 form button {
-  margin-left: 8px;
-  font-size: 24px;
-  padding: 8px;
-  border-radius: 8px;
-  border: solid 2px #49994c;
-  background-color: #4caf50;
-  color: white;
+  @apply ml-2 text-2xl py-4 px-16 rounded-lg border-solid border-2 bg-[#8083e4] text-white;
+}
+
+form button:hover {
+  @apply bg-[#6b6fe6];
 }
 
 form button[disabled] {
@@ -94,38 +78,27 @@ hr {
 }
 
 .todo-box {
-  background-color: #eeeeee;
-  border-radius: 8px;
-  border: solid 2px rgb(201, 201, 201);
-  box-shadow: 0px 0px 20px rgb(179, 179, 179);
-  padding: 36px;
+  @apply bg-[#dedfff] rounded-lg py-7 mx-7 shadow-lg;
 }
 
 .todo-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  @apply flex flex-col gap-4 mx-5;
 }
 
 .todo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: rgb(230, 230, 230);
-  border-radius: 4px;
-  padding: 0 8px;
+  @apply flex justify-between items-center bg-[#8083e4] rounded py-4 px-3 w-auto;
 }
 
 .todo:hover {
-  background-color: rgb(216, 216, 216);
+  @apply bg-[#6b6fe6];
 }
 
 .todo.completed {
-  opacity: 0.4;
+  @apply opacity-40;
 }
 
 .todo.completed p {
-  text-decoration: line-through;
+  @apply line-through;
 }
 
 .todo .todo__info {
@@ -136,22 +109,14 @@ hr {
 }
 
 .todo__actions button {
-  border: none;
-  font-size: 18px;
-  cursor: pointer;
-  filter: grayscale(1);
-  opacity: 0.7;
-  transition: 0.2s;
-  background-color: transparent;
+  @apply text-2xl border-none cursor-pointer opacity-70 duration-200 bg-transparent;
 }
 
 .todo__actions button:hover {
-  filter: grayscale(0);
   opacity: 1;
 }
 
 .todo input {
-  width: 24px;
-  height: 24px;
+  @apply w-7 h-7;
 }
 </style>
