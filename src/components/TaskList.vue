@@ -1,8 +1,8 @@
 <template>
   <div class="todo-box">
     <form @submit.prevent="newTask">
-      <input type="text" placeholder="Add new..." v-model="todoInput" />
-      <button :disabled="!todoInput">Add</button>
+      <input type="text" placeholder="Add new..." />
+      <button>Add</button>
     </form>
     <div class="todo-list">
       <Todo v-for="todo in todos" :todo="todo" :key="todo.id" />
@@ -12,6 +12,15 @@
 
 <script setup>
 import { reactive, ref } from "vue";
+import Todo from "./Todo.vue";
+
+const todos = reactive([
+  {
+    id: Math.random,
+    content: "Finish this!",
+    isDone: false,
+  },
+]);
 </script>
 
 <style scoped>
