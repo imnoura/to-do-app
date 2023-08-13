@@ -1,8 +1,8 @@
 <template>
   <div class="todo-box">
     <form @submit.prevent="newTask">
-      <input type="text" placeholder="Add new..." />
-      <button>Add</button>
+      <input type="text" placeholder="New task..." v-model="todoInput" />
+      <button :disabled="!todoInput">Add</button>
     </form>
     <div class="todo-list">
       <Todo v-for="todo in todos" :todo="todo" :key="todo.id" />
@@ -21,6 +21,17 @@ const todos = reactive([
     isDone: false,
   },
 ]);
+
+const todoInput = ref("");
+
+function newTask() {
+  todos.unshift({
+    id: Math.random,
+    content: todoInput.value,
+    isDone: false,
+  });
+  todoInput.value = "";
+}
 </script>
 
 <style scoped>
