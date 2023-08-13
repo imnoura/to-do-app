@@ -73,7 +73,7 @@ form button[disabled] {
 }
 
 .todo {
-  @apply grid grid-cols-1 sm:grid-cols-12 sm:gap-12 gap-2 text-center sm:text-left justify-between items-center bg-[#8083e4] rounded pl-2 sm:py-4 py-3;
+  @apply grid grid-cols-1 sm:grid-cols-12 sm:gap-12 gap-2 text-center sm:text-left justify-between items-center bg-[#8083e4] rounded sm:py-4 py-3;
 }
 
 .todo:hover {
@@ -85,7 +85,7 @@ form button[disabled] {
 }
 
 .todo__actions button {
-  @apply sm:text-4xl text-2xl text-white cursor-pointer sm:ml-3 ml-2  opacity-80 duration-200;
+  @apply sm:text-4xl text-2xl text-white cursor-pointer sm:ml-3 opacity-80 duration-200;
 }
 .todo__actions {
   @apply col-span-3;
