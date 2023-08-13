@@ -5,7 +5,12 @@
       <button :disabled="!todoInput">Add</button>
     </form>
     <div class="todo-list">
-      <Todo v-for="todo in todos" :todo="todo" :key="todo.id" />
+      <Todo
+        v-for="(todo, index) in todos"
+        :todo="todo"
+        :key="todo.id"
+        @delete="deleteTodo(index)"
+      />
     </div>
   </div>
 </template>
@@ -31,6 +36,10 @@ function newTask() {
     isDone: false,
   });
   todoInput.value = "";
+}
+
+function deleteTodo(index) {
+  todos.splice(index, 1);
 }
 </script>
 
