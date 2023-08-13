@@ -1,36 +1,18 @@
 <template>
   <div class="todo-box">
-    <form>
-      <input type="text" placeholder="Add new..." />
-      <button>Add</button>
+    <form @submit.prevent="newTask">
+      <input type="text" placeholder="Add new..." v-model="todoInput" />
+      <button :disabled="!todoInput">Add</button>
     </form>
     <div class="todo-list">
-      <div class="todo">
-        <div class="todo__info">
-          <p class="break-all sm:break-auto">
-            Buy a new
-            laptop!xcvhjkjhgfchgfdfghsdfsdfghsdfgnhfthsdfgfdghsdgfsdfgsdf
-          </p>
-        </div>
-        <div class="todo__actions">
-          <button>☑</button>
-          <button>☒</button>
-        </div>
-      </div>
-      <div class="todo">
-        <div class="todo__info">
-          <p>Buy some milk</p>
-        </div>
-        <div class="todo__actions">
-          <button>☑</button>
-          <button>☒</button>
-        </div>
-      </div>
+      <Todo v-for="todo in todos" :todo="todo" :key="todo.id" />
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { reactive, ref } from "vue";
+</script>
 
 <style scoped>
 form {
@@ -50,10 +32,7 @@ form button:hover {
 }
 
 form button[disabled] {
-  background-color: gray;
-  border-color: gray;
-  cursor: not-allowed;
-  color: rgb(230, 230, 230);
+  @apply sm:mt-0 mt-3 text-2xl px-16 sm:py-4 py-3 rounded-lg bg-[#8083e4] text-white cursor-not-allowed;
 }
 
 .todo-box {
