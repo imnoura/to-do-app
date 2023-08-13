@@ -16,7 +16,7 @@ defineProps(["todo"]);
 const emit = defineEmits(["delete"]);
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
 .todo {
   @apply grid grid-cols-1 sm:grid-cols-12 sm:gap-12 gap-2 text-center sm:text-left justify-between items-center bg-[#8083e4] rounded pl-2 sm:py-4 py-3;
 }

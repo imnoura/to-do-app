@@ -43,7 +43,7 @@ function deleteTodo(index) {
 }
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
 form {
   @apply sm:w-[595px] justify-evenly flex sm:flex-row flex-col mb-6 mx-4;
 }
