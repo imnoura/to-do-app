@@ -1,6 +1,6 @@
 <template>
   <div
-    class="@apply flex w-[302px] h-16 sm:w-[623px] bg-[#8083e4] mb-5 rounded-lg"
+    class="@apply flex w-[302px] sm:w-[630px] h-16 bg-[#8083e4] mb-5 rounded-lg"
   >
     <button>To Do</button>
     <button>Done</button>
