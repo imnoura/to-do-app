@@ -45,7 +45,7 @@ function deleteTodo(index) {
 
 <style scoped lang="postcss">
 form {
-  @apply sm:w-[595px] justify-evenly flex sm:flex-row flex-col mb-6 mx-4;
+  @apply sm:w-[595px] justify-evenly flex sm:flex-row flex-col mx-4;
 }
 
 form input {
@@ -69,7 +69,7 @@ form button[disabled] {
 }
 
 .todo-list {
-  @apply flex flex-col gap-4 mt-8 mx-4 sm:mx-5;
+  @apply flex flex-col gap-4 mt-5 mx-4 sm:mx-5;
 }
 
 .todo {
