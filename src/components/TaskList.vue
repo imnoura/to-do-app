@@ -10,6 +10,7 @@
         :todo="todo"
         :key="todo.id"
         @delete="deleteTodo(index)"
+        @complete="completeTodo(index)"
       />
     </div>
   </div>
@@ -36,6 +37,10 @@ function newTask() {
     isDone: false,
   });
   todoInput.value = "";
+}
+
+function completeTodo(index) {
+  todos[index].isDone = !todos[index].isDone;
 }
 
 function deleteTodo(index) {

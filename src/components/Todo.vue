@@ -4,7 +4,7 @@
       <p class="break-all sm:break-auto">{{ todo.content }}</p>
     </div>
     <div class="todo__actions">
-      <button>☑</button>
+      <button @click="emit('complete')">☑</button>
       <button @click="emit('delete')">☒</button>
     </div>
   </div>
@@ -13,7 +13,7 @@
 <script setup>
 defineProps(["todo"]);
 
-const emit = defineEmits(["delete"]);
+const emit = defineEmits(["delete, complete"]);
 </script>
 
 <style scoped lang="postcss">
