@@ -1,6 +1,6 @@
 <template>
   <div class="todo-box">
-    <form @submit.prevent="newTask">
+    <form v-if="currentTab === 'todo'" @submit.prevent="newTask">
       <input type="text" placeholder="New task..." v-model="todoInput" />
       <button :disabled="!todoInput">Add</button>
     </form>
@@ -19,6 +19,10 @@
 <script setup>
 import { reactive, ref } from "vue";
 import Todo from "./Todo.vue";
+
+defineProps({
+  currentTab: String,
+});
 
 const todos = reactive([
   {

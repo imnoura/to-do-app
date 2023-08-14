@@ -1,8 +1,7 @@
 <template>
   <div class="overall">
-    <Header @changeState="changeState" />
-
-    <TaskList />
+    <Header @changeState="changeTab" />
+    <TaskList :currentTab="tab" />
   </div>
 </template>
 
@@ -11,12 +10,10 @@ import Header from "./components/Header.vue";
 import TaskList from "./components/TaskList.vue";
 import { ref } from "vue";
 
-const taskState = ref("");
+const tab = ref("todo");
 
-function changeState(state) {
-  console.log(state);
-  taskState.value = state;
-  console.log(taskState);
+function changeTab(tabName) {
+  tab.value = tabName;
 }
 </script>
 
