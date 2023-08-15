@@ -38,6 +38,10 @@ button:hover {
   @apply bg-[#6b6fe6];
 }
 
+div:hover {
+  @apply bg-[#6b6fe6];
+}
+
 .active {
   @apply bg-[#6b6fe6];
 }
