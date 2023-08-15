@@ -24,13 +24,7 @@ defineProps({
   currentTab: String,
 });
 
-const todos = reactive([
-  {
-    id: Math.random,
-    content: "Finish this!",
-    isDone: false,
-  },
-]);
+const todos = reactive([]);
 
 const todoInput = ref("");
 
