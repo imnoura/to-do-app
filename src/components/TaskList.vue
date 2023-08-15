@@ -5,22 +5,23 @@
       <button :disabled="!todoInput">Add</button>
     </form>
     <div class="todo-list">
-      <Todo
-        v-for="(todo, index) in todos"
-        :todo="todo"
-        :key="todo.id"
-        @delete="deleteTodo(index)"
-        @complete="completeTodo(index)"
-      />
+      <template v-for="(todo, index) in todos" :key="todo.id">
+        <Todo
+          v-if="isTodoShow(todo.isDone)"
+          :todo="todo"
+          @delete="deleteTodo(index)"
+          @complete="completeTodo(index)"
+        />
+      </template>
     </div>
   </div>
 </template>
 
 <script setup>
-import { reactive, ref } from "vue";
+import { computed, reactive, ref } from "vue";
 import Todo from "./Todo.vue";
 
-defineProps({
+const props = defineProps({
   currentTab: String,
 });
 
@@ -44,6 +45,19 @@ function completeTodo(index) {
 function deleteTodo(index) {
   todos.splice(index, 1);
 }
+
+const isTodoShow = computed(() => {
+  return (isTaskDone) => {
+    if (props.currentTab === "todo") {
+      console.log(isTaskDone);
+      if (isTaskDone) return false;
+      else if (!isTaskDone) return true;
+    } else if (props.currentTab === "done") {
+      if (isTaskDone) return true;
+      else if (!isTaskDone) return false;
+    }
+  };
+});
 </script>
 
 <style scoped lang="postcss">
