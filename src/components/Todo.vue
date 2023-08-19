@@ -1,13 +1,16 @@
 <template>
   <div :class="['todo', { completed: todo.isDone }]">
     <div class="todo__info">
-      <p class="flex items-center break-all sm:break-auto">
+      <p v-if="!editMode" class="flex items-center break-all sm:break-auto">
         <span>{{ todo.content }}</span>
         <span class="text-xs ml-2"> ({{ todo.status }}) </span>
       </p>
+      <div v-else>
+        <input type="text" placeholder="New task..." v-model="editText" />
+      </div>
     </div>
     <div class="todo__actions">
-      <button v-if="todo.status === 'todo'" @click="emit('edit')">
+      <button v-if="todo.status === 'todo'" @click="onEdit">
         <img src="../assets/images/edit.png" alt="edit icon" class="w-4" />
       </button>
       <button v-if="todo.status === 'todo'" @click="emit('complete')">
@@ -32,9 +35,24 @@
 </template>
 
 <script setup>
-defineProps(["todo"]);
+import { ref } from "vue";
+const props = defineProps(["todo"]);
 
 const emit = defineEmits(["delete, complete, archive, edit"]);
+const editMode = ref(false);
+const editText = ref("");
+
+function onEdit() {
+  if (!editMode.value) {
+    editText.value = props.todo.content;
+    editMode.value = true;
+  } else {
+    emit("edit", editText.value);
+    editMode.value = false;
+  }
+
+  console.log(editMode);
+}
 </script>
 
 <style scoped lang="postcss">
@@ -62,5 +80,10 @@ const emit = defineEmits(["delete, complete, archive, edit"]);
 
 .todo input {
   @apply w-7 h-7;
+}
+
+input {
+  width: 250px !important;
+  @apply text-[#4101cc] text-lg sm:py-4 py-3 bg-[#bdbfff] border-solid border-2 border-[#bbbdf6] rounded-lg;
 }
 </style>

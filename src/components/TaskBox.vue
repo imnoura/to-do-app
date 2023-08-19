@@ -12,6 +12,7 @@
           @delete="deleteTodo(index)"
           @complete="completeTodo(index)"
           @archive="archiveTodo(index)"
+          @edit="editContent(index, $event)"
         />
       </template>
     </div>
@@ -76,6 +77,11 @@ function archiveTodo(index) {
 
 function deleteTodo(index) {
   todos.splice(index, 1);
+  setStore();
+}
+
+function editContent(index, newText) {
+  todos[index].content = newText;
   setStore();
 }
 </script>
