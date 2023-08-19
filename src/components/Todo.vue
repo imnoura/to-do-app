@@ -4,8 +4,23 @@
       <p class="break-all sm:break-auto">{{ todo.content }}</p>
     </div>
     <div class="todo__actions">
-      <button @click="emit('complete')">☑</button>
-      <button @click="emit('delete')">☒</button>
+      <button @click="emit('complete')">
+        <img
+          src="../assets/images/checkmark.png"
+          alt="checkmark icon"
+          class="w-5"
+        />
+      </button>
+      <button @click="emit('delete')">
+        <img src="../assets/images/x.png" alt="x icon" class="w-5" />
+      </button>
+      <button @click="emit('archive')">
+        <img
+          src="../assets/images/flashback.png"
+          alt="flashback icon"
+          class="w-5"
+        />
+      </button>
     </div>
   </div>
 </template>
@@ -13,7 +28,7 @@
 <script setup>
 defineProps(["todo"]);
 
-const emit = defineEmits(["delete, complete"]);
+const emit = defineEmits(["delete, complete, archive"]);
 </script>
 
 <style scoped lang="postcss">
@@ -41,5 +56,9 @@ const emit = defineEmits(["delete, complete"]);
 
 .todo input {
   @apply w-7 h-7;
+}
+
+.img {
+  @apply w-1;
 }
 </style>
