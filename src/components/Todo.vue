@@ -50,8 +50,6 @@ function onEdit() {
     emit("edit", editText.value);
     editMode.value = false;
   }
-
-  console.log(editMode);
 }
 </script>
 
