@@ -4,7 +4,7 @@
       <p class="break-all sm:break-auto">{{ todo.content }}</p>
     </div>
     <div class="todo__actions">
-      <button @click="emit('complete')">
+      <button v-if="todo.status === 'todo'" @click="emit('complete')">
         <img
           src="../assets/images/checkmark.png"
           alt="checkmark icon"
