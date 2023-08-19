@@ -1,7 +1,10 @@
 <template>
   <div :class="['todo', { completed: todo.isDone }]">
     <div class="todo__info">
-      <p class="break-all sm:break-auto">{{ todo.content }}</p>
+      <p class="flex items-center break-all sm:break-auto">
+        <span>{{ todo.content }}</span>
+        <span class="text-xs ml-2"> ({{ todo.status }}) </span>
+      </p>
     </div>
     <div class="todo__actions">
       <button v-if="todo.status === 'todo'" @click="emit('complete')">
@@ -56,9 +59,5 @@ const emit = defineEmits(["delete, complete, archive"]);
 
 .todo input {
   @apply w-7 h-7;
-}
-
-.img {
-  @apply w-1;
 }
 </style>
