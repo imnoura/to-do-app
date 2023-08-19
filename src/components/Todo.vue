@@ -7,21 +7,24 @@
       </p>
     </div>
     <div class="todo__actions">
+      <button v-if="todo.status === 'todo'" @click="emit('edit')">
+        <img src="../assets/images/edit.png" alt="edit icon" class="w-4" />
+      </button>
       <button v-if="todo.status === 'todo'" @click="emit('complete')">
         <img
           src="../assets/images/checkmark.png"
           alt="checkmark icon"
-          class="w-5"
+          class="w-4"
         />
       </button>
       <button @click="emit('delete')">
-        <img src="../assets/images/x.png" alt="x icon" class="w-5" />
+        <img src="../assets/images/x.png" alt="x icon" class="w-4" />
       </button>
       <button @click="emit('archive')">
         <img
           src="../assets/images/flashback.png"
           alt="flashback icon"
-          class="w-5"
+          class="w-4"
         />
       </button>
     </div>
@@ -31,7 +34,7 @@
 <script setup>
 defineProps(["todo"]);
 
-const emit = defineEmits(["delete, complete, archive"]);
+const emit = defineEmits(["delete, complete, archive, edit"]);
 </script>
 
 <style scoped lang="postcss">
@@ -44,14 +47,14 @@ const emit = defineEmits(["delete, complete, archive"]);
 }
 
 .todo .todo__info {
-  @apply sm:col-span-9 gap-2 sm:text-2xl text-xl text-white;
+  @apply sm:col-span-8 gap-2 sm:text-2xl text-xl text-white;
 }
 
 .todo__actions button {
   @apply sm:text-4xl text-2xl text-white cursor-pointer sm:ml-3 ml-2 opacity-80 duration-200;
 }
 .todo__actions {
-  @apply col-span-3;
+  @apply col-span-4;
 }
 .todo__actions button:hover {
   @apply opacity-100;
