@@ -1,6 +1,6 @@
 <template>
   <div class="todo-box">
-    <form v-if="currentTab === 'todo'" @submit.prevent="newTask">
+    <form v-if="['todo', 'all'].includes(currentTab)" @submit.prevent="newTask">
       <input type="text" placeholder="New task..." v-model="todoInput" />
       <button :disabled="!todoInput">Add</button>
     </form>
@@ -35,7 +35,7 @@ function newTask() {
   todos.unshift({
     id: Math.random,
     content: todoInput.value,
-    isDone: false,
+    status: "all" || "todo" || "done" || "archive",
   });
   todoInput.value = "";
   setStore();
@@ -71,7 +71,7 @@ form {
 }
 
 form input {
-  @apply sm:w-[400px] text-[#4101cc] text-2xl px-3 sm:py-4 py-3 bg-[#ccceff] border-solid border-2 border-[#bbbdf6] rounded-lg;
+  @apply sm:w-[400px] text-[#4101cc] text-2xl px-3 sm:py-4 py-3 bg-[#bdbfff] border-solid border-2 border-[#bbbdf6] rounded-lg;
 }
 
 form button {
@@ -83,7 +83,7 @@ form button:hover {
 }
 
 form button[disabled] {
-  @apply sm:mt-0 mt-3 text-2xl px-16 sm:py-4 py-3 rounded-lg bg-[#8083e4] text-white cursor-not-allowed;
+  @apply sm:mt-0 mt-3 text-2xl px-16 sm:py-4 py-3 rounded-lg bg-[#bdbfff] text-white cursor-not-allowed;
 }
 
 .todo-box {
