@@ -7,10 +7,11 @@
     <div class="todo-list">
       <template v-for="(todo, index) in todos" :key="todo.id">
         <Todo
-          v-if="isTodoShow(todo.isDone)"
+          v-if="currentTab === 'all' || todo.status === currentTab"
           :todo="todo"
           @delete="deleteTodo(index)"
           @complete="completeTodo(index)"
+          @archive="archiveTodo(index)"
         />
       </template>
     </div>
@@ -18,12 +19,15 @@
 </template>
 
 <script setup>
-import { computed, reactive, ref, watch } from "vue";
+import { reactive, ref, watch } from "vue";
 import Todo from "./Todo.vue";
-const STORE_KEY = "todos";
+
 const props = defineProps({
   currentTab: String,
 });
+
+const STORE_KEY = "todos";
+
 const localTodos = JSON.parse(localStorage.getItem(STORE_KEY) || "[]");
 const todos = reactive([...localTodos]);
 
@@ -51,7 +55,7 @@ function newTask() {
     todos.unshift({
       id: Math.random,
       content: todoInput.value,
-      status: "all" || "todo" || "done" || "archive",
+      status: "todo" || "done" || "archive",
     });
     todoInput.value = "";
     setStore();
@@ -59,27 +63,22 @@ function newTask() {
 }
 
 function completeTodo(index) {
-  todos[index].isDone = !todos[index].isDone;
+  todos[index].status = "done";
   setStore();
+}
+
+function archiveTodo(index) {
+  if (todos[index].status === "archive") {
+    todos[index].status = "done";
+  } else {
+    todos[index].status = "archive";
+  }
 }
 
 function deleteTodo(index) {
   todos.splice(index, 1);
   setStore();
 }
-
-const isTodoShow = computed(() => {
-  return (isTaskDone) => {
-    if (props.currentTab === "todo") {
-      console.log(isTaskDone);
-      if (isTaskDone) return false;
-      else if (!isTaskDone) return true;
-    } else if (props.currentTab === "done") {
-      if (isTaskDone) return true;
-      else if (!isTaskDone) return false;
-    }
-  };
-});
 </script>
 
 <style scoped lang="postcss">
