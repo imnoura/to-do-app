@@ -27,7 +27,6 @@ const props = defineProps({
 });
 
 const STORE_KEY = "todos";
-
 const localTodos = JSON.parse(localStorage.getItem(STORE_KEY) || "[]");
 const todos = reactive([...localTodos]);
 
@@ -65,14 +64,6 @@ function newTask() {
 function completeTodo(index) {
   todos[index].status = "done";
   setStore();
-}
-
-function archiveTodo(index) {
-  if (todos[index].status === "archive") {
-    todos[index].status = "done";
-  } else {
-    todos[index].status = "archive";
-  }
 }
 
 function deleteTodo(index) {
