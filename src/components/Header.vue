@@ -1,7 +1,11 @@
 <template>
-  <div
-    class="@apply flex w-[302px] sm:w-[630px] h-16 bg-[#8083e4] mb-5 rounded-lg"
-  >
+  <div class="flex w-[302px] sm:w-[630px] h-16 bg-[#8083e4] mb-5 rounded-lg">
+    <button
+      @click="onTabChange('all')"
+      :class="{ active: activeTab === 'all' }"
+    >
+      All
+    </button>
     <button
       @click="onTabChange('todo')"
       :class="{ active: activeTab === 'todo' }"
@@ -13,6 +17,12 @@
       :class="{ active: activeTab === 'done' }"
     >
       Done
+    </button>
+    <button
+      @click="onTabChange('archive')"
+      :class="{ active: activeTab === 'archive' }"
+    >
+      Archive
     </button>
   </div>
 </template>
