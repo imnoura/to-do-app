@@ -66,6 +66,14 @@ function completeTodo(index) {
   setStore();
 }
 
+function archiveTodo(index) {
+  if (todos[index].status === "archive") {
+    todos[index].status = "done";
+  } else {
+    todos[index].status = "archive";
+  }
+}
+
 function deleteTodo(index) {
   todos.splice(index, 1);
   setStore();
