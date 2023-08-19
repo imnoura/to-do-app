@@ -20,14 +20,16 @@
 <script setup>
 import { computed, reactive, ref } from "vue";
 import Todo from "./Todo.vue";
-
+const STORE_KEY = "todos";
 const props = defineProps({
   currentTab: String,
 });
-
-const todos = reactive([]);
+const localTodos = JSON.parse(localStorage.getItem(STORE_KEY) || "[]");
+const todos = reactive([...localTodos]);
 
 const todoInput = ref("");
+
+const setStore = () => localStorage.setItem(STORE_KEY, JSON.stringify(todos));
 
 function newTask() {
   todos.unshift({
@@ -36,14 +38,17 @@ function newTask() {
     isDone: false,
   });
   todoInput.value = "";
+  setStore();
 }
 
 function completeTodo(index) {
   todos[index].isDone = !todos[index].isDone;
+  setStore();
 }
 
 function deleteTodo(index) {
   todos.splice(index, 1);
+  setStore();
 }
 
 const isTodoShow = computed(() => {
