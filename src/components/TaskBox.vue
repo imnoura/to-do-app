@@ -2,7 +2,7 @@
   <div class="todo-box">
     <form v-if="['todo', 'all'].includes(currentTab)" @submit.prevent="newTask">
       <input type="text" placeholder="New task..." v-model="todoInput" />
-      <button :disabled="!todoInput">Add</button>
+      <button :disabled="isBtnDisabled">Add</button>
     </form>
     <div class="todo-list">
       <template v-for="(todo, index) in todos" :key="todo.id">
@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import { computed, reactive, ref } from "vue";
+import { computed, reactive, ref, watch } from "vue";
 import Todo from "./Todo.vue";
 const STORE_KEY = "todos";
 const props = defineProps({
@@ -28,17 +28,34 @@ const localTodos = JSON.parse(localStorage.getItem(STORE_KEY) || "[]");
 const todos = reactive([...localTodos]);
 
 const todoInput = ref("");
+const isBtnDisabled = ref(true);
+
+watch(todoInput, () => {
+  if (todoInput.value && todoInput.value.length > 3) {
+    isBtnDisabled.value = false;
+  } else {
+    isBtnDisabled.value = true;
+  }
+});
 
 const setStore = () => localStorage.setItem(STORE_KEY, JSON.stringify(todos));
 
 function newTask() {
-  todos.unshift({
-    id: Math.random,
-    content: todoInput.value,
-    status: "all" || "todo" || "done" || "archive",
+  const result = todos.find((todo) => {
+    return todo.content === todoInput.value;
   });
-  todoInput.value = "";
-  setStore();
+
+  if (result) {
+    alert("This todo alredy exists!");
+  } else {
+    todos.unshift({
+      id: Math.random,
+      content: todoInput.value,
+      status: "all" || "todo" || "done" || "archive",
+    });
+    todoInput.value = "";
+    setStore();
+  }
 }
 
 function completeTodo(index) {
@@ -75,7 +92,7 @@ form input {
 }
 
 form button {
-  @apply sm:mt-0 mt-3 text-2xl px-16 sm:py-4 py-3 rounded-lg bg-[#8083e4] text-white;
+  @apply sm:mt-0 mt-3 sm:text-2xl text-lg px-16 sm:py-4 py-3 rounded-lg bg-[#8083e4] text-white;
 }
 
 form button:hover {
