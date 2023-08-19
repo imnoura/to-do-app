@@ -41,7 +41,7 @@ function onTabChange(tabName) {
 
 <style scoped lang="postcss">
 button {
-  @apply flex-1 justify-evenly bg-[#8083e4] rounded-lg text-2xl text-white;
+  @apply flex-1 justify-evenly bg-[#8083e4] rounded-lg sm:text-2xl text-lg  text-white;
 }
 
 button:hover {
