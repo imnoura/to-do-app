@@ -67,10 +67,10 @@ function onEdit() {
 }
 
 .todo__actions button {
-  @apply sm:text-4xl text-2xl text-white cursor-pointer sm:ml-3 ml-2 opacity-80 duration-200;
+  @apply sm:text-4xl text-2xl text-white cursor-pointer sm:ml-3 ml-4 opacity-50 duration-200;
 }
 .todo__actions {
-  @apply col-span-4;
+  @apply col-span-4 mr-6 sm:ml-6;
 }
 .todo__actions button:hover {
   @apply opacity-100;
