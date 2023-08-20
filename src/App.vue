@@ -19,6 +19,6 @@ function changeTab(tabName) {
 
 <style scoped lang="postcss">
 .overall {
-  @apply flex w-screen h-screen bg-white justify-center items-center flex-col;
+  @apply flex w-screen h-screen bg-[#313575] justify-center items-center flex-col;
 }
 </style>
